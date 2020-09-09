@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { Text, Title } from 'react-native-paper';
+import { SafeAreaView, StyleSheet, View, Text, FlatList } from 'react-native';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import axios from 'axios';
 
 export default function App() {
@@ -27,8 +27,35 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Title>React Native News</Title>
-
+      <Title style={styles.heading}>React Native News</Title>
+      <FlatList
+        data={newsArticles}
+        keyExtractor={(item) => item.title}
+        renderItem={({ item, key }) => {
+          let date = new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }).replace(',', '');
+          return (
+            <>
+              <Card style={styles.listItemStyle}>
+              <Card.Title
+                title={item.source.name}
+                subtitle={date}
+                left={(props) => <Avatar.Icon {...props} icon="card-bulleted-outline" backgroundColor='#0390fc'/>}
+              />
+                <Card.Content>
+                  <Title>{item.title}</Title>
+                  <Paragraph>Card content</Paragraph>
+                </Card.Content>
+                {
+                  item 
+                  ? <Card.Cover source={{ uri: item.urlToImage }} />
+                  : <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                }
+              </Card>
+              <View style={{borderBottomColor:'black', borderWidth:1 }} />
+            </>
+          );
+        }}
+      />
     </SafeAreaView>
   );
 }
@@ -36,8 +63,18 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 10,
+    // borderColor: 'red',
+    // borderWidth: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'flex-start',
+  },
+  heading: {
+    fontSize: 30,
+  },
+  listItemStyle: {
+    margin: 10,
   },
 });
