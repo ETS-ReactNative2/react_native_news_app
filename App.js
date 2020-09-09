@@ -10,6 +10,28 @@ const Tab = createBottomTabNavigator();
 
 // Import screens
 import HomeScreen from './src/screens/HomeScreen';
+import NewsWebviewScreen from './src/screens/NewsWebviewScreen';
+
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={{
+          headerShown: false
+        }}
+      />
+      <HomeStack.Screen 
+        name="NewsWebview" 
+        component={NewsWebviewScreen}
+        options={({ route }) => ({ title: 'News Reader' })}
+      />
+    </HomeStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -37,11 +59,12 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="News/Media" component={HomeScreen} />
-        <Tab.Screen name="Wordpress" component={HomeScreen} />
+        <Tab.Screen name="News/Media" component={HomeStackScreen} />
+        <Tab.Screen name="Wordpress" component={HomeStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
+
 
 

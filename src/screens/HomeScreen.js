@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Title } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
+import NewsList from '../components/NewsList';
 
 const HomeScreen = ({ navigation }) => {
     const axios = require('axios');
@@ -30,35 +31,9 @@ const HomeScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
         <StatusBar style="light" animated />
         <Title style={styles.heading}>React Native News</Title>
-        <FlatList
+        <NewsList 
             data={newsArticles}
-            keyExtractor={(item) => item.title}
-            renderItem={({ item, key }) => {
-            let date = new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }).replace(',', '');
-            return (
-                <>
-                <Card style={styles.listItemStyle}>
-                <Card.Title
-                    title={item.source.name}
-                    subtitle={date}
-                    left={(props) => <Avatar.Icon {...props} icon="card-bulleted-outline" backgroundColor='#0390fc'/>}
-                />
-                    <Card.Content>
-                    <Title>{item.title}</Title>
-                    <Paragraph>
-                    {item.description}
-                    </Paragraph>
-                    </Card.Content>
-                    {
-                    item.urlToImage 
-                    ? <Card.Cover source={{ uri: item.urlToImage }} />
-                    : <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-                    }
-                </Card>
-                {/* <View style={{borderBottomColor:'black', borderWidth:1 }} /> */}
-                </>
-            );
-            }}
+            onNewsPressed={(news) => navigation.navigate('NewsWebview', { news })}
         />
         </SafeAreaView>
     );
@@ -80,9 +55,6 @@ const styles = StyleSheet.create({
       marginTop: 20,
       fontSize: 30,
       color:'white',
-    },
-    listItemStyle: {
-      margin: 10,
     },
 });
 
