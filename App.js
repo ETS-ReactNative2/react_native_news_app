@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="light" animated />
       <Title style={styles.heading}>React Native News</Title>
       <FlatList
         data={newsArticles}
@@ -53,7 +55,7 @@ export default function App() {
                   : <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
                 }
               </Card>
-              <View style={{borderBottomColor:'black', borderWidth:1 }} />
+              {/* <View style={{borderBottomColor:'black', borderWidth:1 }} /> */}
             </>
           );
         }}
@@ -69,12 +71,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     // borderColor: 'red',
     // borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#156ba3',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
   },
   heading: {
+    marginLeft: 10,
+    marginTop: 20,
     fontSize: 30,
+    color:'white',
   },
   listItemStyle: {
     margin: 10,
