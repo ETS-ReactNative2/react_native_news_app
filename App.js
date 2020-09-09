@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import axios from 'axios';
 
@@ -43,7 +43,9 @@ export default function App() {
               />
                 <Card.Content>
                   <Title>{item.title}</Title>
-                  <Paragraph>Card content</Paragraph>
+                  <Paragraph>
+                  {item.description}
+                  </Paragraph>
                 </Card.Content>
                 {
                   item 
