@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-const NewsList = ({ data, onNewsPressed }) => {
+const NewsList = ({ data, onNewsPressed, onRefresh, refreshing }) => {
     
     return (
         <FlatList
+            refreshing={refreshing}
+            onRefresh={onRefresh}
             data={data}
             keyExtractor={(item) => item.title}
             renderItem={({ item, key }) => {
