@@ -10,5 +10,4 @@ After installing all the dependencies you may run either ```yarn run android``` 
 
 # Demo Screenshots
 
-## Initial App 
-![Initial App Demo Screenshot 1](https://github.com/roycechua23/react_native_news_app/blob/master/demoScreenshots/Screen%20Shot%202020-09-09%20at%2010.42.54%20PM.png)
+![Second Update App Demo Screenshot 2](https://raw.githubusercontent.com/roycechua23/react_native_news_app/master/demoScreenshots/Screen%20Shot%202020-09-14%20at%2010.35.23%20PM.png)
