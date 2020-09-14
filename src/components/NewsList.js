@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-const NewsList = ({ data, onNewsPressed, onRefresh, refreshing }) => {
-    
+const NewsList = ({ data, onNewsPressed, onRefresh, refreshing, ...other }) => {
     return (
         <FlatList
+            { ...other }
             refreshing={refreshing}
             onRefresh={onRefresh}
             data={data}
@@ -29,10 +29,9 @@ const NewsList = ({ data, onNewsPressed, onRefresh, refreshing }) => {
                     {
                     item.urlToImage 
                     ? <Card.Cover source={{ uri: item.urlToImage }} />
-                    : <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                    : null
                     }
                 </Card>
-                {/* <View style={{borderBottomColor:'black', borderWidth:1 }} /> */}
                 </TouchableOpacity>
             );
             }}
